@@ -16,6 +16,7 @@
 #define SMMNODE_TYPE_FOODCHANCE    5 
 #define SMMNODE_TYPE_FESTIVAL      6
 #define SMMNODE_TYPE_MAX           7
+#define SMM_LECTURE_REPLY          10
 
 
 typedef enum smmObjType{
@@ -35,7 +36,7 @@ typedef enum smmObjType{
 */
 
 //object generation
-void smmObj_genObject(char* name, smmObjType_e objType, int type, int credit, int energy, smmObjGrade_e grade);
+void smmObj_genObject(char* name, smmObjType_e objType, int type, int credit, int energy, smmObjGrade_e);
 
 //member retrieving
 char* smmObj_getNodeName(int node_nr);
