@@ -14,6 +14,7 @@
 #define MAX_NODE        100
 #define MAX_FESTCARD    100
 
+//노드 이름 정의 
 static char smmNODENAME[SMMNODE_TYPE_MAX][MAX_CHARNAME]=
 {
 "lectuer"
@@ -25,24 +26,26 @@ static char smmNODENAME[SMMNODE_TYPE_MAX][MAX_CHARNAME]=
 "festival"
 };
 
+
+//노드 이름 보내기 
 char* smmObj_getTypeName(int type)
 {
       return (char*)smmNodeName[type];
 }
 
+//구조체 정의 
 typedef enum smmObjGrade {
-    smmObjGrade_Ap = 0,
-    smmObjGrade_A0 = 1,
-    smmObjGrade_Am = 2,
-    smmObjGrade_Bp = 3,
-    smmObjGrade_B0 = 4,
-    smmObjGrade_Bm = 5,
-    smmObjGrade_Cp = 6,
-    smmObjGrade_C0 = 7,
-    smmObjGrade_Cm = 8
+    smmObjGrade_Ap,
+    smmObjGrade_A0,
+    smmObjGrade_Am,
+    smmObjGrade_Bp,
+    smmObjGrade_B0,
+    smmObjGrade_Bm,
+    smmObjGrade_Cp,
+    smmObjGrade_C0,
+    smmObjGrade_Cm
 } smmObjGrade_e;
 
-//1.구조체 형식 정의 
 
 typedef enum smmObjType{
 	smmObjType_board = 0,
@@ -70,14 +73,6 @@ typedef struct smmFest{
 }smmFest_t;
 
 
-
-
-//2.구조체 배열 변수 정의
-//static smmobj_t smm_node[MAX_NODE];
-//static int smmObj_noNode = 0;
-
-
-//3.관련 함수 변경 
 //object generation
 void smmObj_genObject(char* name, smmObjType_e Objtype, int type, int credit, int energy, smmObjGrade_e grade)
 {
@@ -119,8 +114,9 @@ void smmObj_FestCard(char* Fest_card)
 	
 	return Festptr;
 }
-    
-//3. 관련 함수 변경
+
+ 
+
 //get node element   
 char* smmObj_getNodeName(void* obj)
    {
@@ -128,6 +124,13 @@ char* smmObj_getNodeName(void* obj)
    	
    	return ptr->name;
    }
+   
+smmObjType_e smmObj_getNodeOBJType(void* obj)
+   {
+   	smmObject_t* ptr = (smmObject_t*)obj;
+   	
+   	return ptr->Objtype;
+   }   
 
 int smmObj_getNodeType(void* obj)
    {
@@ -150,8 +153,26 @@ int smmObj_getNodeEnergy(void* obj)
    	return ptr->energy;
    }
 
-int smmObj_smmObj_getNodeGrade(void* obj)
+smmObjGrade_e smmObj_getNodeGrade(void* obj)
    {
 	smmObject_t* ptr = (smmObject_t*)obj;
 	return ptr->grade;  
    }
+//get food card element   
+char* smmObj_getFoodName(void* obj)
+    {
+   	smmFood_d* ptr = (smmFood_d*)obj;
+	return ptr->food_name;
+	} 
+	
+int smmObj_getFoodEnergy(void* obj)
+   {
+	smmFood_d* ptr = (smmFood_d*)obj;
+	return ptr->food_energy;  
+   }	  
+//get festival card element   
+char* smmObj_getFestCard(void* obj)
+    {
+   	smmFest_t* ptr = (smmFest_t*)obj;
+	return ptr->Fest_card;
+	}   
